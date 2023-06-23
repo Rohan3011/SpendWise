@@ -46,7 +46,7 @@ export const HeroSection = () => {
         </svg>
       </div>
       <h1 className="font-semibold leading-loose text-2xl text-center w-full inline-block text-slate-50">
-        SpendWise
+        Expensive
       </h1>
     </div>
   );

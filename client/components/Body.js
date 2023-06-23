@@ -22,7 +22,7 @@ const Body = ({ children, alert }) => {
         <DesktopSidebar isShowing={sidebar} />
       )}
       <main
-        className={`grow h-full transition-transform duration-500 ease-in-out ${
+        className={`grow h-full transition-all ease-out ${
           sidebar ? "lg:mx-6" : "lg:mx-14"
         }`}
       >

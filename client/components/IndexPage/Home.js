@@ -22,7 +22,7 @@ const InfoText = () => {
   return (
     <div className="flex flex-col items-center justify-center pt-32 pb-20  gap-4">
       <h1 className="text-xl md:text-6xl text-center font-extrabold text-slate-800 leading-snug md:leading-tight">
-        {"SpendWise, "}
+        {"Expensive, "}
         <span className="text-blue-500">
           {"simple & blazingly fast personal finance app"}
         </span>
