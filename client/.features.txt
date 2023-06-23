@@ -1,0 +1,15 @@
+-main
+    -card list
+        - income card
+        - expense card
+        - saving card
+        - investment card
+    - dashboard for graphs
+        - graph card (income vs expence)
+        - pie chart card (spending distribution)
+
+-income
+    - add income
+
+-expense
+    - add expense

@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Khula:wght@400;600;700;800&display=swap');
+/* 
+@import url('https://fonts.googleapis.com/css2?family=Mea+Culpa&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap'); */
+@layer base {
+    html {
+      @apply font-roboto;
+    }
+    input{
+      @apply outline-none;
+    }
+  }
+
+@layer components{
+  .icons-main{
+    @apply text-xl text-slate-700;
+  }
+  .input-cell{
+    @apply border p-1 transform transition duration-500 border-white focus:border-gray-300 focus:scale-100 focus:z-10  focus-within:shadow-lg rounded overflow-x-auto ;
+  }
+  .card-animation{
+    @apply transform transition duration-500 hover:scale-105 hover:drop-shadow-lg hover:z-10 hover:border ;
+  }
+
+  .header-icons{
+    @apply h-5 w-5 text-slate-600;
+  }
+
+  .bg-my-color {
+    @apply bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-blue-500 to-blue-600;
+  }
+
+  .footer{
+    @apply flex justify-between px-4 md:px-8 lg:px-12 
+  }
+
+  .success {
+    @apply bg-green-100 text-green-500 border-green-300;
+  }
+  .danger {
+    @apply bg-red-100 text-red-500 border-red-300;
+  }
+  .info {
+    @apply bg-amber-100 text-amber-500 border-amber-300;
+  }
+  .default {
+    @apply bg-blue-100 text-blue-500 border-blue-300;
+  }
+}
