@@ -2,13 +2,13 @@
     "compilerOptions": {
       "baseUrl": "./",
       "paths": {
-        "@app/": ["./"],
+        "@/": ["./"],
         "@components/*": ["components/*"],
         "@hooks/*": ["hooks/*"],
         "@utils/*": ["utils/*"],
         "@services/*": ["services/*"],
         "@styles/*": ["styles/*"],
-        "@~redux/*": ["redux/*"],
+        // "@~redux/*": ["redux/*"],
         "@constants/*": ["constants/*"]
       }
     },

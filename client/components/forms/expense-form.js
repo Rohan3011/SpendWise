@@ -11,7 +11,7 @@ import {
   TextInput,
 } from "@mantine/core";
 import { toast } from "react-toastify";
-import { useAddIncomeMutation } from "@redux/api/incomeApiSlice";
+import { useAddIncomeMutation } from "redux/api/incomeApiSlice";
 
 const schema = Yup.object().shape({
   amount: Yup.number()
@@ -34,18 +34,7 @@ const data = [
   { value: "blitz", label: "Blitz.js" },
 ];
 
-const InputCard = () => {
-  return (
-    <div className="p-4 flex-1 flex flex-col m-4 w-full max-w-md shadow border rounded gap-2 bg-white hover:shadow-md">
-      <InputCardHeader title={"Add income"} />
-      <IncomeForm />
-    </div>
-  );
-};
-
-export default InputCard;
-
-const InputCardHeader = ({ title }) => {
+export const ExpenseCardHeader = ({ title }) => {
   return (
     <div className="flex items-center">
       <div className="grow flex items-center">
@@ -61,7 +50,7 @@ const InputCardHeader = ({ title }) => {
   );
 };
 
-const IncomeForm = () => {
+export const ExpenseForm = () => {
   const [addIncome, { isLoading }] = useAddIncomeMutation();
   const form = useForm({
     initialValues: {
@@ -72,7 +61,7 @@ const IncomeForm = () => {
       note: "",
     },
     validate: yupResolver(schema),
-    validateInputOnBlur: true,
+    validateExpenseOnBlur: true,
   });
 
   const handleSubmit = async () => {

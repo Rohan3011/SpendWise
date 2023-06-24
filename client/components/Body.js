@@ -5,6 +5,7 @@ import { Transition } from "@headlessui/react";
 import useWindowSize from "../hooks/WindowSize";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
+import { cn } from "lib/utils";
 
 const Body = ({ children, alert }) => {
   const sidebar = useSelector((state) => state.sidebar.visible);
@@ -15,16 +16,17 @@ const Body = ({ children, alert }) => {
   // useEffect(() => dispatch(custom(!isMobile)), [isMobile]);
 
   return (
-    <div className="flex w-full h-screen bg-white">
+    <div className="flex h-screen w-screen w-[calc(100% - 80px)] overflow-x-hidden bg-white">
       {isMobile ? (
         <MobileSidebar isShowing={sidebar} hide={dispatch(close())} />
       ) : (
         <DesktopSidebar isShowing={sidebar} />
       )}
       <main
-        className={`grow h-full transition-all ease-out ${
+        className={cn(
+          "grow h-full transition-all ease-out flex flex-col",
           sidebar ? "lg:mx-6" : "lg:mx-14"
-        }`}
+        )}
       >
         <Header />
         {children}

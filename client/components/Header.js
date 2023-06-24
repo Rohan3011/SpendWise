@@ -22,7 +22,7 @@ const HeaderRight = () => {
   const dispatch = useDispatch();
 
   const toggleSidebar = () => {
-    dispatch(toggle());
+    // dispatch(toggle());
   };
   return (
     <div

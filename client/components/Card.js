@@ -8,7 +8,7 @@ import {
 
 const Card = ({ title, value, amount, increase, icon, color, link }) => {
   return (
-    <div className="flex flex-col gap-2 w-full h-[150px] p-4 bg-white shadow rounded-lg card-animation">
+    <div className="flex flex-col gap-2 w-full h-[150px] p-4 bg-white border shadow rounded-lg card-animation">
       <CardHeader title={title} value={value} increase={increase} />
       <CardBody amount={amount} />
       <CardFooter link={link} icon={icon} color={color} />

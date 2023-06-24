@@ -62,7 +62,7 @@ const Sidebar = () => {
 
         <div
           className="lg:hidden group-hover:inline ml-auto p-2 rounded hover-animation"
-          onClick={toggleSidebar}
+          // onClick={toggleSidebar}
         >
           <label htmlFor="my-drawer-2">
             <HiChevronDoubleLeft className="text-xl text-slate-700" />

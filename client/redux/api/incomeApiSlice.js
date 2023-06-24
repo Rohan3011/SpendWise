@@ -2,12 +2,11 @@ import { apiSlice } from "./apiSlice";
 
 export const incomeApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getIncome: builder.query({
+    getAllIncome: builder.query({
       query: () => ({
         url: "/api/incomes",
         method: "GET",
       }),
-      providesTags: ["Income"],
     }),
     addIncome: builder.mutation({
       query: (credentials) => ({
@@ -34,7 +33,7 @@ export const incomeApiSlice = apiSlice.injectEndpoints({
 });
 
 export const {
-  useGetIncomeQuery,
+  useGetAllIncomeQuery,
   useAddIncomeMutation,
   useUpdateIncomeMutation,
   useDeleteIncomeMutation,
