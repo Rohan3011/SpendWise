@@ -49,7 +49,7 @@ const HeaderCenter = () => {
     <div className="flex grow justify-between items-center">
       <Link href={"/"}>
         <a className="hidden md:inline-block text-xl font-semibold text-slate-600">
-          Expensive
+          Expenditure
         </a>
       </Link>
       <input

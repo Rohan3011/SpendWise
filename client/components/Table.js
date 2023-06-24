@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import PageSubHeader from "./PageSubHeader";
 import { useGetIncomeQuery } from "../redux/api/incomeApiSlice";
+import { LoadingOverlay } from "@mantine/core";
 
 const Table = ({ title }) => {
-  const { data } = useGetIncomeQuery();
+  const { data: incomeData, isLoading } = useGetIncomeQuery();
 
   const tableHeader = ["Date", "Amount", "Source", "Tags", "Note"];
 
@@ -11,9 +12,10 @@ const Table = ({ title }) => {
     <div className="p-4">
       <PageSubHeader title={title} />
       <table className="w-full bg-white">
+        <LoadingOverlay visible={isLoading} />
         <TableHeader header={tableHeader} />
         <tbody className="transform animate-none">
-          {data?.map((val, idx) => {
+          {incomeData?.map((val, idx) => {
             return (
               <TableRow
                 key={idx}

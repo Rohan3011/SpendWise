@@ -21,7 +21,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.get("/", (_, res) => {
-  res.send("Welcome to Expensive API");
+  res.send("Welcome to Expenditure API");
 });
 
 app.use(cookieJwtAuth);

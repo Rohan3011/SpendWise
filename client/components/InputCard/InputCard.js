@@ -1,9 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import * as Yup from "yup";
-import { useFormik } from "formik";
 import { useForm, yupResolver } from "@mantine/form";
 import { HiDotsHorizontal, HiOutlineCollection } from "react-icons/hi";
-import { InputField, TextAreaField } from "../shared/form";
 import {
   Button,
   LoadingOverlay,
@@ -12,17 +10,17 @@ import {
   Textarea,
   TextInput,
 } from "@mantine/core";
-import { SubmitButton } from "../shared/buttons";
 import { toast } from "react-toastify";
-import { useAddIncomeMutation } from "../../redux/api/incomeApiSlice";
+import { useAddIncomeMutation } from "@redux/api/incomeApiSlice";
 
 const schema = Yup.object().shape({
-  amount: Yup.number("Amount must be a positive number")
+  amount: Yup.number()
+    .typeError("Amount must be a number")
     .positive()
     .required("Amount is required"),
-  date: Yup.date().nullable().required(),
-  source: Yup.string().required(),
-  tags: Yup.array().of(Yup.string()).required(),
+  date: Yup.date().typeError("Date is required").nullable().required(),
+  source: Yup.string().typeError("Source is required").required(),
+  tags: Yup.array().of(Yup.string()).typeError("Source is required").required(),
   note: Yup.string().max(5000).optional().default("Credited"),
 });
 
@@ -105,7 +103,11 @@ const IncomeForm = () => {
   };
 
   return (
-    <form onSubmit={form.onSubmit(handleSubmit)} onReset={form.onReset}>
+    <form
+      onSubmit={form.onSubmit(handleSubmit)}
+      onReset={form.onReset}
+      className="space-y-2"
+    >
       <LoadingOverlay visible={isLoading} />
       <TextInput
         id="incomeAmount"
