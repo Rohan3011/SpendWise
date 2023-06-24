@@ -6,6 +6,7 @@ import useWindowSize from "../hooks/WindowSize";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 import { cn } from "lib/utils";
+import SiteFooter from "./shared/site-footer";
 
 const Body = ({ children, alert }) => {
   const sidebar = useSelector((state) => state.sidebar.visible);
@@ -16,21 +17,20 @@ const Body = ({ children, alert }) => {
   // useEffect(() => dispatch(custom(!isMobile)), [isMobile]);
 
   return (
-    <div className="flex h-screen w-screen w-[calc(100% - 80px)] overflow-x-hidden bg-white">
-      {isMobile ? (
-        <MobileSidebar isShowing={sidebar} hide={dispatch(close())} />
-      ) : (
+    <div className="h-full overflow-hidden bg-white">
+      <div className="flex w-full overflow-hidden">
         <DesktopSidebar isShowing={sidebar} />
-      )}
-      <main
-        className={cn(
-          "grow h-full transition-all ease-out flex flex-col",
-          sidebar ? "lg:mx-6" : "lg:mx-14"
-        )}
-      >
-        <Header />
-        {children}
-      </main>
+        <main
+          className={cn(
+            "grow h-full transition-all ease-out flex flex-col pb-10",
+            sidebar ? "lg:mx-6" : "lg:mx-14"
+          )}
+        >
+          <Header />
+          {children}
+        </main>
+      </div>
+      <SiteFooter />
     </div>
   );
 };
