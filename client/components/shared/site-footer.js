@@ -1,5 +1,9 @@
-import { Container, Group, ActionIcon, rem } from "@mantine/core";
-import { AiFillGithub, AiFillTwitterCircle } from "react-icons/ai";
+import { Container, Group, ActionIcon } from "@mantine/core";
+import {
+  AiFillGithub,
+  AiFillTwitterCircle,
+  AiFillLinkedin,
+} from "react-icons/ai";
 
 export default function SiteFooter() {
   return (
@@ -75,6 +79,14 @@ export default function SiteFooter() {
             href="https://twitter.com/_rohankamble"
           >
             <AiFillTwitterCircle size="2rem" stroke={1.5} />
+          </ActionIcon>
+          <ActionIcon
+            size="xl"
+            component="a"
+            target="_blank"
+            href="https://www.linkedin.com/in/rohan-kamble/"
+          >
+            <AiFillLinkedin size="2rem" stroke={1.5} />
           </ActionIcon>
         </Group>
       </Container>

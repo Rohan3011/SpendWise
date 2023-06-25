@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Router, useRouter } from "next/router";
+import { useRouter } from "next/router";
 import {
   HiOutlineCash,
   HiOutlineChartBar,
@@ -8,19 +8,17 @@ import {
   HiUser,
   HiOutlineCog,
   HiChevronDoubleLeft,
-  HiX,
 } from "react-icons/hi";
-import { Transition } from "@headlessui/react";
 import { MdOutlineSpaceDashboard } from "react-icons/md";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { toggle } from "../redux/slices/sidebarSlice";
-import { selectCurrentUser } from "../redux/slices/authSlice";
+import { setUser } from "../redux/slices/authSlice";
 import { useProfileQuery } from "../redux/api/userApiSlice";
 import { useEffect } from "react";
 import { Skeleton } from "@mantine/core";
 
 const Sidebar = () => {
-  const { data: user, error, isLoading } = useProfileQuery();
+  const { data: user, error, isLoading, isSuccess } = useProfileQuery();
   const dispatch = useDispatch();
   const router = useRouter();
   const toggleSidebar = () => {
@@ -32,6 +30,10 @@ const Sidebar = () => {
       router.push("/login");
     }
   }, [error]);
+
+  useEffect(() => {
+    setUser(user);
+  }, [isSuccess]);
 
   return (
     <div className="w-60 h-full lg:flex flex-col">

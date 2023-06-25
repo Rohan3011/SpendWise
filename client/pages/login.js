@@ -1,7 +1,23 @@
 import Head from "next/head";
 import Login from "../components/Login";
+import { useProfileQuery } from "redux/api/userApiSlice";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
+import { setUser } from "redux/slices/authSlice";
 
 function LoginPage() {
+  const { data: user, isSuccess } = useProfileQuery();
+  const router = useRouter();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (isSuccess) {
+      dispatch(setUser(user));
+      router.push("/dashboard");
+    }
+  }, [isSuccess]);
+
   return (
     <div>
       <Head>

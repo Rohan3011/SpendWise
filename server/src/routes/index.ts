@@ -8,7 +8,7 @@ import HttpStatusCode from "../../utils/HttpStatusCode";
 
 const router = express.Router();
 
-router.get("/healthcheck", (_, res) => {
+router.get("/health", (_, res) => {
   res.sendStatus(HttpStatusCode.OK);
 });
 
