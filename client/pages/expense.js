@@ -7,6 +7,7 @@ import BarChart from "../components/BarChart";
 import Shell from "@components/shared/Shell";
 import MyAreaChart from "@components/charts/area-chart";
 import { IncomeForm, InputCardHeader } from "@components/forms/income-form";
+import { ExpenseForm } from "@components/forms/expense-form";
 
 export default function Home() {
   return (
@@ -21,8 +22,8 @@ export default function Home() {
 
         <div className="flex flex-col lg:flex-row gap-4 p-4">
           <Shell className="w-full max-w-lg">
-            <InputCardHeader title={"Add income"} />
-            <IncomeForm />
+            <InputCardHeader title={"Add expense"} />
+            <ExpenseForm />
           </Shell>
           <Shell title="Income vs Expense" className="flex-1">
             <MyAreaChart />

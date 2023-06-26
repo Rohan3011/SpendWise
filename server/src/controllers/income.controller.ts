@@ -19,8 +19,18 @@ import {
  * @access Private
  */
 export async function getIncomesHandler(req: Request, res: Response) {
-  const incomes = await getIncomes();
-  return res.status(HttpStatusCode.OK).json(incomes);
+  const user = res.locals.user;
+  try {
+    if (!user) {
+      return res
+        .status(HttpStatusCode.FORBIDDEN)
+        .send({ error: "User doesn't exits, please login!" });
+    }
+    const incomes = await getIncomes({ userId: user._id });
+    return res.status(HttpStatusCode.OK).json(incomes);
+  } catch (e) {
+    res.status(HttpStatusCode.INTERNAL_SERVER_ERROR).send(e);
+  }
 }
 
 /**
@@ -51,8 +61,10 @@ export async function createIncomeHandler(
   res: Response
 ) {
   const body = req.body;
+  const user = res.locals.user;
+
   try {
-    const resp = await createIncome(body);
+    const resp = await createIncome({ userId: user._id, ...body });
     return res.send({ success: "Income added successfully" });
   } catch (e: any) {
     res.status(HttpStatusCode.INTERNAL_SERVER_ERROR).send(e);

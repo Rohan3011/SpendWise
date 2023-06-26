@@ -24,7 +24,6 @@ export default function Home() {
             <IncomeForm />
           </Shell>
           <Shell title="Income Distribution" className="flex-1">
-            {/* <MyAreaChart /> */}
             <MyPieChart />
           </Shell>
         </div>

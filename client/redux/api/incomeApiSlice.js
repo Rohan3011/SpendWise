@@ -7,6 +7,7 @@ export const incomeApiSlice = apiSlice.injectEndpoints({
         url: "/api/incomes",
         method: "GET",
       }),
+      providesTags: ["Income"],
     }),
     addIncome: builder.mutation({
       query: (credentials) => ({
@@ -14,6 +15,7 @@ export const incomeApiSlice = apiSlice.injectEndpoints({
         method: "POST",
         body: { ...credentials },
       }),
+      invalidatesTags: ["Income"],
     }),
     updateIncome: builder.mutation({
       query: (id, credentials) => ({

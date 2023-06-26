@@ -5,8 +5,8 @@ export function createIncome(input: Partial<Income>) {
   return IncomeModel.create(input);
 }
 
-export function getIncomes() {
-  return IncomeModel.find();
+export function getIncomes({ userId }: { userId: string }) {
+  return IncomeModel.find({ userId });
 }
 
 export function getIncome(params: modifyIncomeParams) {
