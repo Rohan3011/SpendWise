@@ -9,17 +9,24 @@ export function getIncomes({ userId }: { userId: string }) {
   return IncomeModel.find({ userId });
 }
 
-export function getIncome(params: modifyIncomeParams) {
-  return IncomeModel.findById(params.id);
+export function getIncome(
+  { id }: modifyIncomeParams,
+  { userId }: { userId: string }
+) {
+  return IncomeModel.findOne({ id, userId });
 }
 
 export function updateIncome(
   params: modifyIncomeParams,
-  input: Partial<Income>
+  input: Partial<Income>,
+  { userId }: { userId: string }
 ) {
   return IncomeModel.findByIdAndUpdate(params.id, input);
 }
 
-export function deleteIncome(params: modifyIncomeParams) {
+export function deleteIncome(
+  params: modifyIncomeParams,
+  { userId }: { userId: string }
+) {
   return IncomeModel.findByIdAndRemove(params.id);
 }

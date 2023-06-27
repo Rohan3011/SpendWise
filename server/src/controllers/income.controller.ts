@@ -43,8 +43,15 @@ export async function getIncomeHandler(
   res: Response
 ) {
   const params = req.params;
+  const user = res.locals.user;
+
   try {
-    const income = await getIncome(params);
+    if (!user) {
+      return res
+        .status(HttpStatusCode.FORBIDDEN)
+        .send({ error: "User doesn't exits, please login!" });
+    }
+    const income = await getIncome(params, { userId: user._id });
     return res.send(income);
   } catch (e: any) {
     res.status(HttpStatusCode.INTERNAL_SERVER_ERROR).send(e);
@@ -64,6 +71,11 @@ export async function createIncomeHandler(
   const user = res.locals.user;
 
   try {
+    if (!user) {
+      return res
+        .status(HttpStatusCode.FORBIDDEN)
+        .send({ error: "User doesn't exits, please login!" });
+    }
     const resp = await createIncome({ userId: user._id, ...body });
     return res.send({ success: "Income added successfully" });
   } catch (e: any) {
@@ -81,8 +93,15 @@ export async function updateIncomeHandler(
   res: Response
 ) {
   const { params, body } = req;
+  const user = res.locals.user;
+
   try {
-    const income = await updateIncome(params, body);
+    if (!user) {
+      return res
+        .status(HttpStatusCode.FORBIDDEN)
+        .send({ error: "User doesn't exits, please login!" });
+    }
+    const income = await updateIncome(params, body, { userId: user._id });
     return res.send({
       message: `Income: ${params.id} updated successfully`,
       income,
@@ -102,8 +121,15 @@ export async function deleteIncomeHandler(
   res: Response
 ) {
   const params = req.params;
+  const user = res.locals.user;
+
   try {
-    const income = await deleteIncome(params);
+    if (!user) {
+      return res
+        .status(HttpStatusCode.FORBIDDEN)
+        .send({ error: "User doesn't exits, please login!" });
+    }
+    const income = await deleteIncome(params, { userId: user._id });
     return res.send({
       message: `Income: ${params.id} successfully deleted`,
       income,

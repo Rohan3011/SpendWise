@@ -38,7 +38,7 @@ export const incomeBodyOptionalSchema = z.object({
     })
     .optional(),
   date: dateSchema.optional(),
-  source: z.string(),
+  source: z.string().optional(),
   tags: z.array(z.string()),
   note: z.string().optional(),
 });

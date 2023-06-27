@@ -8,6 +8,7 @@ import Shell from "@components/shared/Shell";
 import MyAreaChart from "@components/charts/area-chart";
 import { IncomeForm, InputCardHeader } from "@components/forms/income-form";
 import { ExpenseForm } from "@components/forms/expense-form";
+import ExpenseTable from "@components/expense-table";
 
 export default function Home() {
   return (
@@ -20,7 +21,7 @@ export default function Home() {
       <Body>
         <PageTitle title={"Expense"} link={"/expense"} />
 
-        <div className="flex flex-col lg:flex-row gap-4 p-4">
+        <div className="flex flex-col xl:flex-row items-center xl:items-start gap-4 p-4">
           <Shell className="w-full max-w-lg">
             <InputCardHeader title={"Add expense"} />
             <ExpenseForm />
@@ -29,7 +30,7 @@ export default function Home() {
             <MyAreaChart />
           </Shell>
         </div>
-        <IncomeTable title={"Recent Expense"} />
+        <ExpenseTable title={"Recent Expense"} />
       </Body>
     </div>
   );

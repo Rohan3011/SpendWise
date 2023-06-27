@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import PageSubHeader from "./PageSubHeader";
-import { useGetAllIncomeQuery } from "../redux/api/incomeApiSlice";
 import { ActionIcon, Button, LoadingOverlay, Table } from "@mantine/core";
 import { HiRefresh } from "react-icons/hi";
+import { useGetAllExpenseQuery } from "redux/api/expenseSlice";
 
-const IncomeTable = ({ title }) => {
-  const { data: incomeData, isLoading, refetch } = useGetAllIncomeQuery();
+const ExpenseTable = ({ title }) => {
+  const { data: incomeData, isLoading, refetch } = useGetAllExpenseQuery();
 
   const tableHeader = ["Date", "Amount", "Source", "Tags", "Note"];
 
@@ -47,4 +47,4 @@ const IncomeTable = ({ title }) => {
   );
 };
 
-export default IncomeTable;
+export default ExpenseTable;

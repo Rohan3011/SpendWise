@@ -11,7 +11,7 @@ import {
   TextInput,
 } from "@mantine/core";
 import { toast } from "react-toastify";
-import { useAddIncomeMutation } from "redux/api/incomeApiSlice";
+import { useAddExpenseMutation } from "redux/api/expenseSlice";
 
 const schema = Yup.object().shape({
   amount: Yup.number()
@@ -51,7 +51,7 @@ export const ExpenseCardHeader = ({ title }) => {
 };
 
 export const ExpenseForm = () => {
-  const [addIncome, { isLoading }] = useAddIncomeMutation();
+  const [addExpense, { isLoading }] = useAddExpenseMutation();
   const form = useForm({
     initialValues: {
       amount: "",
@@ -73,12 +73,13 @@ export const ExpenseForm = () => {
       console.log("Something went wrong! ❌");
       return;
     }
+
     try {
-      const resp = await addIncome(data).unwrap();
+      const resp = await addExpense(data).unwrap();
       if (resp && resp.success) {
         toast.success(resp.success);
         form.reset();
-      } else {
+      } else if (resp.error) {
         throw new Error(resp.error);
       }
     } catch (err) {
@@ -99,6 +100,7 @@ export const ExpenseForm = () => {
     >
       <LoadingOverlay visible={isLoading} />
       <TextInput
+        color="grape"
         id="incomeAmount"
         type="number"
         name="amount"
@@ -108,6 +110,7 @@ export const ExpenseForm = () => {
         {...form.getInputProps("amount")}
       />
       <TextInput
+        color="grape"
         id="incomeDate"
         type="date"
         name="date"
@@ -118,19 +121,21 @@ export const ExpenseForm = () => {
       />
 
       <Select
+        color="grape"
         label="What is the source?"
         placeholder="Pick one"
         required
         data={[
-          { value: "salary", label: "Salary" },
-          { value: "freelancing", label: "Freelancing" },
-          { value: "sideProject", label: "Side Project" },
-          { value: "theft", label: "Theft?" },
+          { value: "rent", label: "Rent" },
+          { value: "groceries", label: "Groceries" },
+          { value: "transportation", label: "Transportation" },
+          { value: "utilities", label: "Utilities" },
         ]}
         {...form.getInputProps("source")}
       />
 
       <MultiSelect
+        color="grape"
         id="incomeTags"
         name="tags"
         required
@@ -141,6 +146,7 @@ export const ExpenseForm = () => {
       />
 
       <Textarea
+        color="grape"
         autosize
         minRows={2}
         maxRows={4}
@@ -152,14 +158,14 @@ export const ExpenseForm = () => {
       />
 
       <section className="grow flex space-x-2 pt-4 justify-end">
-        <Button type="reset" variant="outline">
+        <Button type="reset" color="grape" variant="outline">
           Discard
         </Button>
         <Button
           type="submit"
-          color="blue"
+          color="grape"
           disabled={Object.keys(form.errors).length !== 0}
-          className="bg-[#228be6]"
+          className="bg-[#BE4BDB]"
         >
           Add
         </Button>

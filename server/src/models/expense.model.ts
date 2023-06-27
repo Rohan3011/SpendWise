@@ -48,10 +48,10 @@ export class Expense {
   date: Date;
 
   @prop({ required: true })
-  source: ExpenseSource[];
+  source: string;
 
   @prop({ required: true })
-  tags: ExpenseTags[];
+  tags: string[];
 
   @prop()
   note?: string;
