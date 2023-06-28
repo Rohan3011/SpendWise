@@ -13,7 +13,8 @@ function LoginPage() {
 
   useEffect(() => {
     if (isSuccess) {
-      dispatch(setUser(user));
+      dispatch(setUser({ user }));
+      router.back();
       router.push("/dashboard");
     }
   }, [isSuccess]);

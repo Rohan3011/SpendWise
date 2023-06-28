@@ -15,7 +15,15 @@ export const authApiSlice = apiSlice.injectEndpoints({
         method: "GET",
       }),
     }),
+    onboarding: builder.mutation({
+      query: (data) => ({
+        url: "/api/users/onboarding",
+        method: "PUT",
+        body: { ...data },
+      }),
+    }),
   }),
 });
 
-export const { useSignupMutation, useProfileQuery } = authApiSlice;
+export const { useSignupMutation, useProfileQuery, useOnboardingMutation } =
+  authApiSlice;

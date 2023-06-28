@@ -26,14 +26,21 @@ const Sidebar = () => {
   };
 
   useEffect(() => {
-    if (error) {
+    if (!user || error) {
       router.push("/login");
+    } else if (user) {
+      dispatch(setUser({ user }));
     }
-  }, [error]);
+  }, [user, error]);
 
-  useEffect(() => {
-    setUser(user);
-  }, [isSuccess]);
+  // useEffect(() => {
+  //   if (user) {
+  //     setUser(user);
+  //     if (!user.onboarding) {
+  //       router.push("/onboarding");
+  //     }
+  //   }
+  // }, [isSuccess]);
 
   return (
     <div className="w-60 h-full lg:flex flex-col">

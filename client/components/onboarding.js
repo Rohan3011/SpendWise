@@ -18,6 +18,12 @@ import { MdOutlineAccountBalanceWallet } from "react-icons/md";
 import { FaCrown, FaRupeeSign } from "react-icons/fa";
 import { useAddBalanceMutation } from "../redux/api/balanceApiSlice";
 import { Router, useRouter } from "next/router";
+import { cn } from "lib/utils";
+import { useOnboardingMutation } from "redux/api/userApiSlice";
+import { setUser } from "redux/slices/authSlice";
+import { SubmitButton } from "./shared/buttons";
+import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
 
 const currencies = [
   { value: "INR", label: "Indian Rupee (INR)" },
@@ -33,8 +39,9 @@ const schema = Yup.object().shape({
   isPremium: Yup.boolean().default(false),
 });
 
-function GettingStarted() {
+function OnBoarding({ className }) {
   const router = useRouter();
+  const dispatch = useDispatch();
   const [active, setActive] = useState(0);
   const nextStep = () =>
     setActive((current) => {
@@ -48,22 +55,27 @@ function GettingStarted() {
         return 3;
       }
     });
+
   const prevStep = () =>
     setActive((current) => (current > 0 ? current - 1 : current));
 
-  const [addBalance, { isError, isLoading, isSuccess, error }] =
-    useAddBalanceMutation();
+  const [addBalance] = useAddBalanceMutation();
 
-  const handleSubmit = async (data = form.values) => {
+  const [addOnboarding, { isError, isLoading, isSuccess, error }] =
+    useOnboardingMutation();
+
+  const handleSubmit = async (data = form.value) => {
     if (!form.isValid) {
       console.log("Something went wrong! ❌");
       return;
     }
     try {
-      const userData = await addBalance(data).unwrap();
-      dispatch(setCredentials({ tokens: userData }));
-      form.handleReset();
-      Router.push("/dashboard");
+      // const balanceData = await addBalance(data).unwrap();
+      const userData = await addOnboarding({ onboarding: true });
+      console.log("onboarding", userData);
+      dispatch(setUser({ user: userData }));
+      form.reset();
+      router.push("/dashboard");
     } catch (err) {
       if (err?.data) {
         toast.error(err.data);
@@ -84,8 +96,13 @@ function GettingStarted() {
   });
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="shadow-lg border p-2 sm:p-6 rounded-lg bg-white mx-auto w-full max-w-3xl min-h-[500px] flex flex-col">
+    <form onSubmit={form.onSubmit(handleSubmit)}>
+      <div
+        className={cn(
+          "shadow-lg border p-4 sm:p-10 rounded-lg bg-white mx-auto w-full max-w-5xl min-h-[500px] flex flex-col",
+          className
+        )}
+      >
         <Stepper
           className="grow"
           active={active}
@@ -151,7 +168,7 @@ function GettingStarted() {
                 </h3>
 
                 <p className="select-none text-xs text-slate-500">
-                  How much cash do you have in your physical wallet?
+                  Exclusive features and more Insights
                 </p>
                 <Button
                   className="bg-gradient-to-r from-amber-500 to-yellow-500"
@@ -194,13 +211,19 @@ function GettingStarted() {
                   <p className="select-none text-xs text-slate-500">
                     Redirecting to dashboard...
                   </p>
+
+                  <SubmitButton label="Submit" />
                 </div>
               </Box>
             )}
           </Stepper.Completed>
         </Stepper>
 
-        <Group className="w-full mt-auto" position="center" mt="xl">
+        <Group
+          className={cn("w-full mt-auto", isSuccess ? "hidden" : "")}
+          position="center"
+          mt="xl"
+        >
           <Button variant="default" onClick={prevStep}>
             Back
           </Button>
@@ -213,4 +236,4 @@ function GettingStarted() {
   );
 }
 
-export default GettingStarted;
+export default OnBoarding;

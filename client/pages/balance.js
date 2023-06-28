@@ -3,8 +3,15 @@ import Body from "../components/Body";
 import WorkingOnIt from "../components/WorkingOnIt";
 import PageTitle from "../components/PageTitle";
 import Alert from "../components/shared/Alert";
+import OnBoarding from "@components/onboarding";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 export default function Home() {
+  const user = useSelector((state) => state.auth.user);
+  useEffect(() => {
+    console.log(user);
+  }, []);
   return (
     <div>
       <Head>
@@ -14,7 +21,10 @@ export default function Home() {
       </Head>
       <Body>
         <PageTitle title={"Balance"} link={"/balance"} />
-        <WorkingOnIt />
+        {/* <WorkingOnIt /> */}
+        <main className="relative flex justify-center items-center bg-gray-100">
+          <OnBoarding />
+        </main>
       </Body>
     </div>
   );
