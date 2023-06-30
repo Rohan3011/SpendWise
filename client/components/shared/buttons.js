@@ -4,6 +4,7 @@ import {
   HiOutlineRefresh,
   HiOutlineCheck,
   HiArrowNarrowRight,
+  HiOutlineSparkles,
 } from "react-icons/hi";
 
 export const SubmitButton = ({ label, disabled }) => {

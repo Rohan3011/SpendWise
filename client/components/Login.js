@@ -60,7 +60,7 @@ const LoginTitle = () => {
         Welcome back!
       </h3>
       <p className="text-center text-sm text-slate-500">
-        Don't have an account?
+        Don&apos;t have an account?
         <Link passHref href="/signup">
           <span className="cursor-pointer text-blue-700 font-semibold pl-1">
             signup

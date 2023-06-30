@@ -58,6 +58,7 @@ export default function SiteFooter() {
           <a
             target="_blank"
             href="https://github.com/Rohan3011"
+            rel="noreferrer"
             className="text-slate-700 font-semibold underline"
           >
             Rohan Kamble
@@ -68,6 +69,7 @@ export default function SiteFooter() {
             size="xl"
             component="a"
             target="_blank"
+            rel="noreferrer"
             href="https://github.com/Rohan3011/SpendWise"
           >
             <AiFillGithub size="2rem" stroke={1.5} />
@@ -76,6 +78,7 @@ export default function SiteFooter() {
             size="xl"
             component="a"
             target="_blank"
+            rel="noreferrer"
             href="https://twitter.com/_rohankamble"
           >
             <AiFillTwitterCircle size="2rem" stroke={1.5} />
@@ -84,6 +87,7 @@ export default function SiteFooter() {
             size="xl"
             component="a"
             target="_blank"
+            rel="noreferrer"
             href="https://www.linkedin.com/in/rohan-kamble/"
           >
             <AiFillLinkedin size="2rem" stroke={1.5} />
